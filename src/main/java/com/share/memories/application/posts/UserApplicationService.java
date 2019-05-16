@@ -1,5 +1,6 @@
 package com.share.memories.application.users;
 
+import com.share.memories.application.posts.AppUser;
 import com.share.memories.application.users.dto.AddUserRequest;
 import com.share.memories.application.users.dto.AppUserContext;
 import com.share.memories.application.users.dto.LoginUserRequest;

@@ -1,4 +1,4 @@
-package com.share.memories.application.users;
+package com.share.memories.application.posts;
 
 import com.share.memories.application.users.dto.AddUserRequest;
 import com.share.memories.application.users.dto.LoginUserRequest;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-public class UserFacade {
+public static class UserFacade {
     private final UserApplicationService userApplicationService;
     private final SecurityUtil securityUtil;
 

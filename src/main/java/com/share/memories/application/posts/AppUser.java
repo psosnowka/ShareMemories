@@ -18,6 +18,7 @@ class AppUser extends BaseEntity {
     private String email;
     private String password;
 
+
     AppUserContext getContext() {
         return AppUserContext.builder()
                              .email(getEmail())

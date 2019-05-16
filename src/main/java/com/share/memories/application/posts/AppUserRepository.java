@@ -1,5 +1,6 @@
 package com.share.memories.application.users;
 
+import com.share.memories.application.posts.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
