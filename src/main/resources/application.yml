@@ -2,7 +2,6 @@ server:
   port: 8080
 spring:
   datasource:
-
     password: postgres
     url: jdbc:postgresql://localhost:5432/memories?useSSL=false
     username: postgres
@@ -19,7 +18,8 @@ spring:
   jooq:
     sql-dialect: org.hibernate.dialect.PostgreSQLDialect
 jwt:
+  header: Authorization
   secret: SecretKeyToGenJWTs
   expiration: 864000000
   prefix: "Bearer "
-  header: Authorization
+

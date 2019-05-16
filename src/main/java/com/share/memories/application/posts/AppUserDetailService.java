@@ -1,5 +1,6 @@
-package com.share.memories.application.users;
+package com.share.memories.application.posts;
 
+import com.share.memories.application.posts.AppUserRepository;
 import com.share.memories.infrastructure.rest.ApiErrorCode;
 import com.share.memories.infrastructure.rest.AppException;
 import lombok.RequiredArgsConstructor;

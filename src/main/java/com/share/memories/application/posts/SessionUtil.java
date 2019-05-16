@@ -1,7 +1,7 @@
 package com.share.memories.application.posts;
 
-import com.share.memories.application.users.dto.AddUserRequest;
-import com.share.memories.application.users.dto.LoginUserRequest;
+import com.share.memories.application.posts.dto.AddUserRequest;
+import com.share.memories.application.posts.dto.LoginUserRequest;
 import com.share.memories.application.util.SecurityUtil;
 import com.share.memories.application.util.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-public static class UserFacade {
+public class SessionUtil {
     private final UserApplicationService userApplicationService;
     private final SecurityUtil securityUtil;
 

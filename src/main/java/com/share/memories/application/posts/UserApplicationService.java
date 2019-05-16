@@ -1,9 +1,8 @@
-package com.share.memories.application.users;
+package com.share.memories.application.posts;
 
-import com.share.memories.application.posts.AppUser;
-import com.share.memories.application.users.dto.AddUserRequest;
-import com.share.memories.application.users.dto.AppUserContext;
-import com.share.memories.application.users.dto.LoginUserRequest;
+import com.share.memories.application.posts.dto.AddUserRequest;
+import com.share.memories.application.posts.dto.AppUserContext;
+import com.share.memories.application.posts.dto.LoginUserRequest;
 import com.share.memories.infrastructure.rest.ApiErrorCode;
 import com.share.memories.infrastructure.rest.AppException;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ class UserApplicationService {
         if (appUserRepository.findByEmail(addUserRequest.getEmail()).isPresent()) {
             throw new AppException("User already exists", HttpStatus.BAD_REQUEST);
         }
-        AppUser appUser = new AppUser(addUserRequest.getEmail(), passwordEncoder.encode(addUserRequest.getPassword()));
+        AppUser appUser = AppUser.from(addUserRequest, passwordEncoder);
         AppUser savedUser = appUserRepository.save(appUser);
         log.info("Created user: {}", savedUser);
         return savedUser.getContext();

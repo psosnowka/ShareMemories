@@ -1,4 +1,4 @@
-package com.share.memories.application.users;
+package com.share.memories.application.posts;
 
 import com.share.memories.application.posts.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
