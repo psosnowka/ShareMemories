@@ -25,15 +25,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .cors().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .addFilter(new JwtTokenAuthenticationFilter(authenticationManager(), securityConstants))
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/token", "/users").permitAll()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and()
+//                .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+//                .and()
+//                .addFilter(new JwtTokenAuthenticationFilter(authenticationManager(), securityConstants))
+//                .authorizeRequests()
+//                .antMatchers(HttpMethod.POST, "/token", "/users").permitAll()
 //                .antMatchers("/test").permitAll()
-                .anyRequest().authenticated();
+//                .anyRequest().authenticated();
     }
 
     @Bean
