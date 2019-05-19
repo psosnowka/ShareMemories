@@ -21,5 +21,4 @@ jwt:
   header: Authorization
   secret: SecretKeyToGenJWTs
   expiration: 864000000
-  prefix: "Bearer "
 

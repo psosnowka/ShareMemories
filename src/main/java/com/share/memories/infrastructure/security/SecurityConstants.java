@@ -11,8 +11,6 @@ public class SecurityConstants {
     private long expiration;
     @Value("${jwt.secret}")
     private String secret;
-    @Value("${jwt.prefix}")
-    private String prefix;
     @Value("${jwt.header}")
     private String header;
 }

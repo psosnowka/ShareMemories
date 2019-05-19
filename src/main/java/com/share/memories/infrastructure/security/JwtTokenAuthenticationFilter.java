@@ -26,7 +26,7 @@ public class JwtTokenAuthenticationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse res,
                                     FilterChain chain) throws IOException, ServletException {
         String header = req.getHeader(securityConstants.getHeader());
-        if (header == null || !header.startsWith(securityConstants.getPrefix())) {
+        if (header == null) {
             chain.doFilter(req, res);
             return;
         }
@@ -38,8 +38,7 @@ public class JwtTokenAuthenticationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(securityConstants.getHeader());
         if (token != null) {
-            String pureToken = token.replace(securityConstants.getPrefix(), "");
-            Claims claims = TokenGenerator.validateToken(pureToken, securityConstants.getSecret());
+            Claims claims = TokenGenerator.validateToken(token, securityConstants.getSecret());
 
 //            String user = Jwts.parser()
 //                              .setSigningKey(SECRET)

@@ -1,4 +1,4 @@
-package com.share.memories.application.posts.dto;
+package com.share.memories.application.users.dto;
 
 import lombok.ToString;
 import lombok.Value;

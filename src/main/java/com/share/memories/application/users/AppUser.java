@@ -1,8 +1,8 @@
-package com.share.memories.application.posts;
+package com.share.memories.application.users;
 
 import com.share.memories.application.base.BaseEntity;
-import com.share.memories.application.posts.dto.AddUserRequest;
-import com.share.memories.application.posts.dto.AppUserContext;
+import com.share.memories.application.shared.Image;
+import com.share.memories.application.users.dto.AddUserRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,11 +23,8 @@ class AppUser extends BaseEntity {
     private String lastName;
     private String photoUrl;
 
-    AppUserContext getContext() {
-        return AppUserContext.builder()
-                             .email(getEmail())
-                             .uuid(getUuid())
-                             .build();
+    UserContext getContext() {
+        return new UserContext(getUuid(), this.email, this.firstName, this.lastName, Image.of(this.photoUrl));
     }
 
     static AppUser from(AddUserRequest request, PasswordEncoder passwordEncoder) {
