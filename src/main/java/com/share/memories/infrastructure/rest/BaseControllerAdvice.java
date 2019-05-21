@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.BindException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,10 +28,10 @@ public class BaseControllerAdvice {
         return new ApiResponse("Invalid JSON", uuidException);
     }
 
-    @ExceptionHandler(BindException.class)
+    @ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ApiResponse handleException(BindException ex) {
+    public ApiResponse handleException(org.springframework.web.bind.MethodArgumentNotValidException ex) {
         final String uuidException = UUID.randomUUID()
                                          .toString();
         log.info("ERROR - " + uuidException + ", message: " + ex.getMessage(), ex);

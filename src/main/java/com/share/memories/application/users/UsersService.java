@@ -13,8 +13,17 @@ class UsersService {
     private final UserApplicationService userApplicationService;
     private final SecurityUtil securityUtil;
 
-    public Mono<TokenResponse> addUserAndGetSessionToken(AddUserRequest addUserRequest) {
+    Mono<TokenResponse> addUserAndGetSessionToken(AddUserRequest addUserRequest) {
         return Mono.fromCallable(() -> userApplicationService.addUser(addUserRequest))
                    .map(user -> securityUtil.createSessionToken(user.getEmail()));
     }
+
+    Mono<AppUser> addFolower(UserContext userContext, String userUuid) {
+        return Mono.fromCallable(() -> userApplicationService.addFollower(userContext, userUuid));
+    }
+
+    Mono<AppUser> getUser(UserContext userContext) {
+        return Mono.fromCallable(() -> userApplicationService.getUserByEmail(userContext.getEmail()));
+    }
+
 }

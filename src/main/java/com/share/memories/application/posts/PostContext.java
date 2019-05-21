@@ -24,5 +24,6 @@ public class PostContext {
         private final String firstName;
         private final String lastName;
         private final String imageUrl;
+        private final String email;
     }
 }

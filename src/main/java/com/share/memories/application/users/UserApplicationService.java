@@ -38,6 +38,16 @@ class UserApplicationService {
                                 .orElseThrow(() -> new AppException(ApiErrorCode.USER_NOT_EXISTS, "User not exists", HttpStatus.BAD_REQUEST));
     }
 
+    AppUser addFollower(UserContext userContext, String userUuid) {
+        AppUser follow = appUserRepository.findAppUserByUuid(userUuid)
+                                          .orElseThrow(
+                                                  () -> new AppException(ApiErrorCode.USER_NOT_EXISTS, "User not exisits", HttpStatus.BAD_REQUEST));
+        AppUser user = appUserRepository.findAppUserByUuid(userContext.getUuid())
+                                        .map(appUser -> appUser.addFollower(follow))
+                                        .orElseThrow(() -> new IllegalStateException("Invalid system state"));
+        return appUserRepository.save(user);
+    }
+
     private boolean isPasswordMatches(String requestPassword, String password) {
         return passwordEncoder.matches(requestPassword, password);
     }

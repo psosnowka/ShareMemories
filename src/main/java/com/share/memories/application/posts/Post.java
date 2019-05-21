@@ -19,6 +19,7 @@ class Post extends BaseEntity {
     private String title;
     private String text;
     private String imageUrl;
+    private String ownerEmail;
     private String ownerFirstName;
     private String ownerLastName;
     private String ownerImageUrl;
@@ -28,19 +29,21 @@ class Post extends BaseEntity {
         return new Post(request.getTitle(),
                         request.getText(),
                         request.getImage(),
-                        userContext.getAvatarUrl(),
+                        userContext.getEmail(),
                         userContext.getFirstName(),
                         userContext.getLastName(),
-                        userContext.getEmail());
+                        userContext.getAvatarUrl(),
+                        userContext.getUuid());
     }
 
     PostContext getPostContext() {
         return new PostContext(getUuid(),
                                getCreatedDate(),
-                               new PostContext.Owner(ownerUuid,
-                                                     ownerFirstName,
-                                                     ownerLastName,
-                                                     ownerImageUrl),
+                               new PostContext.Owner(this.ownerUuid,
+                                                     this.ownerFirstName,
+                                                     this.ownerLastName,
+                                                     this.ownerImageUrl,
+                                                     this.ownerEmail),
                                new PostContext.Content(this.imageUrl,
                                                        this.title,
                                                        this.text));
