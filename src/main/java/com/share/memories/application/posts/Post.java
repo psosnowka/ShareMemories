@@ -2,6 +2,7 @@ package com.share.memories.application.posts;
 
 import com.share.memories.application.base.BaseEntity;
 import com.share.memories.application.posts.dto.AddPostRequest;
+import com.share.memories.application.posts.dto.PostResponse;
 import com.share.memories.application.users.UserContext;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,5 +48,19 @@ class Post extends BaseEntity {
                                new PostContext.Content(this.imageUrl,
                                                        this.title,
                                                        this.text));
+    }
+
+    PostResponse getPostResponse() {
+        return new PostResponse(
+                this.getUuid(),
+                this.getCreatedDate(),
+                this.text,
+                this.title,
+                this.imageUrl,
+                this.ownerUuid,
+                this.ownerEmail,
+                this.ownerImageUrl,
+                this.ownerFirstName,
+                this.ownerLastName);
     }
 }

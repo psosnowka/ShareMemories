@@ -1,15 +1,15 @@
 package com.share.memories.infrastructure.controllers;
 
-import com.share.memories.application.posts.PostContext;
 import com.share.memories.application.posts.PostsFacade;
 import com.share.memories.application.posts.dto.AddPostRequest;
+import com.share.memories.application.posts.dto.PostResponse;
 import com.share.memories.application.users.SessionUtil;
 import com.share.memories.application.users.UserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -20,10 +20,17 @@ public class PostController {
     private final PostsFacade postsFacade;
 
     @PostMapping
-    public PostContext addPost(AddPostRequest request) {
+    public PostResponse addPost(@RequestBody AddPostRequest request) {
         UserContext userContext = sessionUtil.getUserContext();
         log.info("Add post request: {} in user context: {}", request, userContext.getEmail());
         return postsFacade.addPost(request, userContext);
+    }
+
+    @GetMapping
+    public List<PostResponse> getAllPostsForUser() {
+        UserContext userContext = sessionUtil.getUserContext();
+        log.info("Get all posts for user:{}", userContext.getEmail());
+        return postsFacade.getAllPosts();
     }
 
 }

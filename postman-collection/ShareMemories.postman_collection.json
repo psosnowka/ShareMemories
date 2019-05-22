@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"Test@test.pl\",\n\t\"password\": \"Pass\",\n\t\"firstName\": \"First\",\n\t\"lastName\": \"Last\"\n}"
+							"raw": "{\n\t\"email\": \"Test2@test.pl\",\n\t\"password\": \"Pass\",\n\t\"firstName\": \"First\",\n\t\"lastName\": \"Last\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/users",
@@ -49,7 +49,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0QHRlc3QucGwiLCJleHAiOjE1NTkzMzI2NTZ9.VZryhzBtPZZUhgwiXlsC10mkOHwwhQLONilZ8WfBaAQ-E4_q9f2DjQh1WaqINWvpbDLdcXSQiQU85UMF9OflUQ",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5MzMzNTAxfQ.uVqBpdaKahubqKcy4BiRUUAgVev568RjQIY1qqZNUiRIEndJTH5kiciW_xTyM4kz2G4TpfJO24w9bp5-UdXAyA",
 								"type": "text"
 							}
 						],
@@ -58,13 +58,14 @@
 							"raw": "{\n\t\"userUuid\": \"4d06c9d9-6f91-4953-a297-6ff5017aa937\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/users/account",
+							"raw": "{{url}}/users/account/followers",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"users",
-								"account"
+								"account",
+								"followers"
 							]
 						}
 					},
@@ -73,15 +74,26 @@
 				{
 					"name": "getSessionToken",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"Test2@test.pl\",\n\t\"password\": \"Pass\"\n}"
+						},
 						"url": {
-							"raw": "localhost:8080/token",
+							"raw": "{{url}}/users/token",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
+								"users",
 								"token"
 							]
 						}
@@ -106,8 +118,44 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0M0B0ZXN0LnBsIiwiZXhwIjoxNTU5MTYwNjQ5fQ.sDnTSdFTpBK_v7FcNKY2AehUsN6Rr6DsXJy5C0lwsAjITyiOqDnkyJ9a6ptJ8ps0-59_KgwWSaA_SDLLHJRqUg",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NDI2NzkzfQ.cL32Z-zoVm9g91HScNLfMRNeFPmtDIrwGnWzbJOvhp3aMToUEMKMuX8RTpGcC7PbL-DZFtK7vn6oGjOiutSl8Q",
 								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"test\",\n    \"title\": \"title\",\n    \"image\": \"image\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/posts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPosts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NDI2NzkzfQ.cL32Z-zoVm9g91HScNLfMRNeFPmtDIrwGnWzbJOvhp3aMToUEMKMuX8RTpGcC7PbL-DZFtK7vn6oGjOiutSl8Q"
 							}
 						],
 						"body": {
