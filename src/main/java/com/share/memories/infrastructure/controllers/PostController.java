@@ -3,12 +3,14 @@ package com.share.memories.infrastructure.controllers;
 import com.share.memories.application.posts.PostsFacade;
 import com.share.memories.application.posts.dto.AddPostRequest;
 import com.share.memories.application.posts.dto.PostResponse;
+import com.share.memories.application.posts.dto.UpdatePostRequest;
 import com.share.memories.application.users.SessionUtil;
 import com.share.memories.application.users.UserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -32,5 +34,12 @@ public class PostController {
         log.info("Get all posts for user:{}", userContext.getEmail());
         return postsFacade.getAllPosts();
     }
+
+    @PutMapping
+    public PostResponse updatePost(@Valid @RequestBody UpdatePostRequest request) {
+        UserContext userContext = sessionUtil.getUserContext();
+        return postsFacade.updatePost(request, userContext);
+    }
+
 
 }

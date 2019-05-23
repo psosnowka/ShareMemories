@@ -29,7 +29,7 @@ public class SessionUtil {
         return getLoggedClient()
                 .map(userApplicationService::getUserByEmail)
                 .map(AppUser::getContext)
-                .orElseThrow(() -> new AppException(ApiErrorCode.USER_NOT_EXISTS, "User not exists", HttpStatus.BAD_REQUEST));
+                .orElseThrow(() -> new AppException(ApiErrorCode.INVALID_TOKEN, "User from token not exists", HttpStatus.BAD_REQUEST));
     }
 
     private Optional<String> getLoggedClient() {

@@ -118,13 +118,46 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NDI2NzkzfQ.cL32Z-zoVm9g91HScNLfMRNeFPmtDIrwGnWzbJOvhp3aMToUEMKMuX8RTpGcC7PbL-DZFtK7vn6oGjOiutSl8Q",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NTA3MTczfQ.uTandjyKPZo12HPqooRC7VVwXNobXlOPJwhiuFrjzsNKAbW0Br1ecLgUojYAQN2F-rOGPsTmt-Xk9UFWI56jyA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"text\": \"test\",\n    \"title\": \"title\",\n    \"image\": \"image\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/posts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePost",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NDI2NzkzfQ.cL32Z-zoVm9g91HScNLfMRNeFPmtDIrwGnWzbJOvhp3aMToUEMKMuX8RTpGcC7PbL-DZFtK7vn6oGjOiutSl8Q"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"postUuid\":\"8e578230-57e0-42f0-b259-6c0c1344b0ea\",\n    \"text\": \"asdasdasdasd\",\n    \"title\": \"asdasdasdasd\",\n    \"image\": \"asdasdasdasdasd\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/posts",

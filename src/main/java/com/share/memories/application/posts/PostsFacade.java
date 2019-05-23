@@ -2,6 +2,7 @@ package com.share.memories.application.posts;
 
 import com.share.memories.application.posts.dto.AddPostRequest;
 import com.share.memories.application.posts.dto.PostResponse;
+import com.share.memories.application.posts.dto.UpdatePostRequest;
 import com.share.memories.application.users.UserContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,12 @@ public class PostsFacade {
     public List<PostResponse> getAllPosts() {
         return postsService.getAllPostsForUsers()
                            .stream()
-                           .map(post -> post.getPostResponse())
+                           .map(Post::getPostResponse)
                            .collect(Collectors.toList());
+    }
+
+    public PostResponse updatePost(UpdatePostRequest request, UserContext userContext) {
+        return postsService.updatePost(request, userContext)
+                           .getPostResponse();
     }
 }
