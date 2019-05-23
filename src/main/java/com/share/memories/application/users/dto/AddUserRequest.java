@@ -12,9 +12,7 @@ public class AddUserRequest {
     private final String email;
     @NotEmpty
     private final String password;
-    @NotEmpty
     private final String firstName;
-    @NotEmpty
     private final String lastName;
     private final String photoUrl;
 }
