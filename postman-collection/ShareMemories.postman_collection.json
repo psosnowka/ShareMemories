@@ -206,6 +206,43 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getPostByUuid",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NTQ0NjU3fQ.7I4oRSIrlBPT5NLjTcY79kB64GU8kzQ-NChf5Qu5zj6r762OEbKYZpruNt0dR3TerAucZXL6EHwHZVKHhAFp0w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"test\",\n    \"title\": \"title\",\n    \"image\": \"image\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/posts/2e3ba693-2d5b-4333-afce-9f595cfa8a52s",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts",
+								"2e3ba693-2d5b-4333-afce-9f595cfa8a52s"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
