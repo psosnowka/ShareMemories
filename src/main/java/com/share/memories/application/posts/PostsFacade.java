@@ -30,4 +30,8 @@ public class PostsFacade {
         return postsService.updatePost(request, userContext)
                            .getPostResponse();
     }
+
+    public PostResponse getPostByUuid(String uuid) {
+        return postsService.getPostByUuid(uuid).getPostResponse();
+    }
 }

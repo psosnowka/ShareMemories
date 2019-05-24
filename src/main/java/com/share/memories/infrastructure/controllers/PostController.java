@@ -41,5 +41,10 @@ public class PostController {
         return postsFacade.updatePost(request, userContext);
     }
 
+    @GetMapping("/{uuid}")
+    public PostResponse getPost(@PathVariable String uuid) {
+        log.info("Get post by uuid:{}", uuid);
+        return postsFacade.getPostByUuid(uuid);
+    }
 
 }

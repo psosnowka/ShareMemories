@@ -30,7 +30,7 @@ class Post extends BaseEntity {
     static Post from(AddPostRequest request, UserContext userContext) {
         return new Post(request.getTitle(),
                         request.getText(),
-                        request.getImage(),
+                        request.getImageUrl(),
                         userContext.getEmail(),
                         userContext.getFirstName(),
                         userContext.getLastName(),

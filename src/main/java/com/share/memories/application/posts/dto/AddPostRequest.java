@@ -6,5 +6,5 @@ import lombok.Data;
 public class AddPostRequest {
     private String text;
     private String title;
-    private String image;
+    private String imageUrl;
 }

@@ -9,4 +9,6 @@ interface PostJpaRepository extends JpaRepository<Post, Long> {
     List<Post> findAll();
 
     Optional<Post> findFirstByUuid(String uuid);
+
+    Optional<Post> getPostByUuid(String uuid);
 }

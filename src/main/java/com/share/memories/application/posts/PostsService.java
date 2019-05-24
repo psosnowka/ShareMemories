@@ -37,4 +37,8 @@ class PostsService {
         return postJpaRepository.findAll();
     }
 
+    Post getPostByUuid(String uuid) {
+        return postJpaRepository.getPostByUuid(uuid)
+                                .orElseThrow(() -> new AppException(ApiErrorCode.CANT_FIND_POST, "Cant find post", HttpStatus.BAD_REQUEST));
+    }
 }
