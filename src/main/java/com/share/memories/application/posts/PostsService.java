@@ -33,23 +33,24 @@ class PostsService {
         return postJpaRepository.save(updatedPost);
     }
 
-    List<Post> getAllPostsForUsers() {
-        return postJpaRepository.findAll();
+    List<Post> getAllPublicPosts() {
+        return postJpaRepository.findAllPublicPosts();
     }
 
     Post getPostByUuid(String uuid) {
-        return getPost(uuid);
+        return postJpaRepository.getPostByUuid(uuid)
+                                .orElseThrow(() -> new AppException(ApiErrorCode.CANT_FIND_POST, "Cant find post", HttpStatus.BAD_REQUEST));
     }
 
-    public void delete(UserContext userContext, String postUuid) {
+    void delete(UserContext userContext, String postUuid) {
         Post postByUuid = postJpaRepository.getPostByUuid(postUuid)
                                            .filter(post -> post.getOwnerUuid().equals(userContext.getUuid()))
                                            .orElseThrow(() -> new AppException(ApiErrorCode.CANT_FIND_POST, "Cant find post", HttpStatus.BAD_REQUEST));
         postJpaRepository.delete(postByUuid);
     }
 
-    private Post getPost(String uuid) {
-        return postJpaRepository.getPostByUuid(uuid)
-                                .orElseThrow(() -> new AppException(ApiErrorCode.CANT_FIND_POST, "Cant find post", HttpStatus.BAD_REQUEST));
+    List<Post> getAllPostsForUsers(List<String> users) {
+        return postJpaRepository.findAllPostsForUsers(users);
     }
+
 }

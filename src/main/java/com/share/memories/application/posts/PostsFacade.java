@@ -19,8 +19,15 @@ public class PostsFacade {
         return postsService.addPost(request, userContext).getPostResponse();
     }
 
-    public List<PostResponse> getAllPosts() {
-        return postsService.getAllPostsForUsers()
+    public List<PostResponse> getAllPublicPosts() {
+        return postsService.getAllPublicPosts()
+                           .stream()
+                           .map(Post::getPostResponse)
+                           .collect(Collectors.toList());
+    }
+
+    public List<PostResponse> getAllPostsForUsers(List<String> users) {
+        return postsService.getAllPostsForUsers(users)
                            .stream()
                            .map(Post::getPostResponse)
                            .collect(Collectors.toList());

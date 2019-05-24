@@ -2,8 +2,8 @@ package com.share.memories.application.posts;
 
 import com.share.memories.application.base.BaseEntity;
 import com.share.memories.application.posts.dto.AddPostRequest;
-import com.share.memories.application.posts.dto.UpdatePostRequest;
 import com.share.memories.application.posts.dto.PostResponse;
+import com.share.memories.application.posts.dto.UpdatePostRequest;
 import com.share.memories.application.users.UserContext;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +21,7 @@ class Post extends BaseEntity {
     private String title;
     private String text;
     private String imageUrl;
+    private boolean isPublic;
     private String ownerEmail;
     private String ownerFirstName;
     private String ownerLastName;
@@ -31,6 +32,7 @@ class Post extends BaseEntity {
         return new Post(request.getTitle(),
                         request.getText(),
                         request.getImageUrl(),
+                        request.isPublic(),
                         userContext.getEmail(),
                         userContext.getFirstName(),
                         userContext.getLastName(),
@@ -65,6 +67,7 @@ class Post extends BaseEntity {
                 this.text,
                 this.title,
                 this.imageUrl,
+                this.isPublic,
                 this.ownerUuid,
                 this.ownerEmail,
                 this.ownerImageUrl,

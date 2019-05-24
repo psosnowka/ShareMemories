@@ -11,6 +11,7 @@ public class PostResponse {
     private final String text;
     private final String title;
     private final String imageUrl;
+    private final boolean isPublic;
     private final String ownerUuid;
     private final String ownerEmail;
     private final String ownerImage;

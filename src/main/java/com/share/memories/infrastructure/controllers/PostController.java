@@ -31,10 +31,8 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostResponse> getAllPostsForUser() {
-//        UserContext userContext = sessionUtil.getUserContext();
-//        log.info("Get all posts for user:{}", userContext.getEmail());
-        return postsFacade.getAllPosts();
+    public List<PostResponse> getAllPublicPosts() {
+        return postsFacade.getAllPublicPosts();
     }
 
     @PutMapping("/{uuid}")
@@ -46,7 +44,7 @@ public class PostController {
     }
 
     @GetMapping("/{uuid}")
-    public PostResponse getPost(@PathVariable String uuid) {
+    public PostResponse getPostAllPublicPosts(@PathVariable String uuid) {
         log.info("Get post by uuid:{}", uuid);
         return postsFacade.getPostByUuid(uuid);
     }
