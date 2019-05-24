@@ -32,8 +32,8 @@ public class PostController {
 
     @GetMapping
     public List<PostResponse> getAllPostsForUser() {
-        UserContext userContext = sessionUtil.getUserContext();
-        log.info("Get all posts for user:{}", userContext.getEmail());
+//        UserContext userContext = sessionUtil.getUserContext();
+//        log.info("Get all posts for user:{}", userContext.getEmail());
         return postsFacade.getAllPosts();
     }
 
