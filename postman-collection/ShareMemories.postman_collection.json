@@ -118,13 +118,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NTA3MTczfQ.uTandjyKPZo12HPqooRC7VVwXNobXlOPJwhiuFrjzsNKAbW0Br1ecLgUojYAQN2F-rOGPsTmt-Xk9UFWI56jyA",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NTkwNDc3fQ.BM-o8OiJ4-hrPPt_c71M9EFFOYE4V0xyX_M2R8gjyRsyYeunW4l4uVJrVMhH8jy8ITO5eFUsHI2wSWdbMQ04nw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"text\": \"test\",\n    \"title\": \"title\",\n    \"image\": \"image\"\n}"
+							"raw": "{\n    \"text\": \"testssss\",\n    \"title\": \"titssssle\",\n    \"image\": \"image\",\n    \"isPublic\": true\n}"
 						},
 						"url": {
 							"raw": "{{url}}/posts",
@@ -172,7 +172,7 @@
 					"response": []
 				},
 				{
-					"name": "getAllPosts",
+					"name": "getAllPublicPosts",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},

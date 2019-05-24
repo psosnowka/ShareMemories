@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
@@ -26,16 +27,17 @@ class AppUser extends BaseEntity {
     private String password;
     private String firstName;
     private String lastName;
-    private String photoUrl;
+    @Column(length = 500)
+    private String imageUrl;
     @OneToMany
     private Set<AppUser> followers = new HashSet<>();
 
     UserContext getContext() {
-        return new UserContext(getUuid(), this.email, this.firstName, this.lastName, Image.of(this.photoUrl));
+        return new UserContext(getUuid(), this.email, this.firstName, this.lastName, Image.of(this.imageUrl));
     }
 
     static AppUser from(AddUserRequest request, PasswordEncoder passwordEncoder) {
-        return new AppUser(request.getEmail(),
+        return new Appr(request.getEmail(),
                            passwordEncoder.encode(request.getPassword()),
                            request.getFirstName(),
                            request.getLastName(),

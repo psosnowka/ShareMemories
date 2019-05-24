@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
@@ -20,11 +21,13 @@ import javax.persistence.Entity;
 class Post extends BaseEntity {
     private String title;
     private String text;
+    @Column(length = 500)
     private String imageUrl;
     private boolean isPublic;
     private String ownerEmail;
     private String ownerFirstName;
     private String ownerLastName;
+    @Column(length = 500)
     private String ownerImageUrl;
     private String ownerUuid;
 
