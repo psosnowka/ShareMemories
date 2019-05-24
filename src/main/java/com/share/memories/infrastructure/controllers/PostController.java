@@ -35,9 +35,11 @@ public class PostController {
         return postsFacade.getAllPosts();
     }
 
-    @PutMapping
-    public PostResponse updatePost(@Valid @RequestBody UpdatePostRequest request) {
+    @PutMapping("/{uuid}")
+    public PostResponse updatePost(@Valid @RequestBody UpdatePostRequest request, @PathVariable String uuid) {
+        log.info("Update post request:{}", request);
         UserContext userContext = sessionUtil.getUserContext();
+        request.setPostUuid(uuid);
         return postsFacade.updatePost(request, userContext);
     }
 
