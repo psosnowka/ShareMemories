@@ -34,4 +34,8 @@ public class PostsFacade {
     public PostResponse getPostByUuid(String uuid) {
         return postsService.getPostByUuid(uuid).getPostResponse();
     }
+
+    public void delete(UserContext userContext, String postUuid) {
+        postsService.delete(userContext, postUuid);
+    }
 }

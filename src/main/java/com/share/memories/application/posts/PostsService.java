@@ -38,6 +38,17 @@ class PostsService {
     }
 
     Post getPostByUuid(String uuid) {
+        return getPost(uuid);
+    }
+
+    public void delete(UserContext userContext, String postUuid) {
+        Post postByUuid = postJpaRepository.getPostByUuid(postUuid)
+                                           .filter(post -> post.getOwnerUuid().equals(userContext.getUuid()))
+                                           .orElseThrow(() -> new AppException(ApiErrorCode.CANT_FIND_POST, "Cant find post", HttpStatus.BAD_REQUEST));
+        postJpaRepository.delete(postByUuid);
+    }
+
+    private Post getPost(String uuid) {
         return postJpaRepository.getPostByUuid(uuid)
                                 .orElseThrow(() -> new AppException(ApiErrorCode.CANT_FIND_POST, "Cant find post", HttpStatus.BAD_REQUEST));
     }

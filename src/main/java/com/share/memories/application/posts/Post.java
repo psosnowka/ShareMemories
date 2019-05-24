@@ -52,7 +52,7 @@ class Post extends BaseEntity {
     }
 
     Post updatePost(UpdatePostRequest request) {
-        this.imageUrl = request.getImage();
+        this.imageUrl = request.getImageUrl();
         this.text = request.getText();
         this.title = request.getTitle();
         return this;

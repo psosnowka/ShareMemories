@@ -8,6 +8,8 @@ import com.share.memories.application.users.SessionUtil;
 import com.share.memories.application.users.UserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -47,6 +49,13 @@ public class PostController {
     public PostResponse getPost(@PathVariable String uuid) {
         log.info("Get post by uuid:{}", uuid);
         return postsFacade.getPostByUuid(uuid);
+    }
+
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<Void> deletePost(@PathVariable("uuid") String uuid) {
+        UserContext userContext = sessionUtil.getUserContext();
+        postsFacade.delete(userContext, uuid);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

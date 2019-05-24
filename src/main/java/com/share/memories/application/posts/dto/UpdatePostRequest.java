@@ -7,5 +7,5 @@ public class UpdatePostRequest {
     private String postUuid;
     private String text;
     private String title;
-    private String image;
+    private String imageUrl;
 }
