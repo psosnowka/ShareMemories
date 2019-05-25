@@ -1,18 +1,21 @@
 package com.share.memories.application.users;
 
+import com.share.memories.application.posts.dto.PostResponse;
 import com.share.memories.application.users.dto.AddUserRequest;
+import com.share.memories.application.users.dto.AddUserResponse;
 import com.share.memories.application.users.dto.UserResponse;
-import com.share.memories.application.util.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class UsersFacade {
     private final UsersService usersService;
 
-    public Mono<TokenResponse> addUserAndCreateSessionToken(AddUserRequest addUserRequest) {
+    public AddUserResponse addUserAndCreateSessionToken(AddUserRequest addUserRequest) {
         return usersService.addUserAndGetSessionToken(addUserRequest);
     }
 
@@ -21,9 +24,13 @@ public class UsersFacade {
                            .map(AppUser::getUserResponse);
     }
 
-    public Mono<UserResponse> getUser(UserContext userContext) {
+    public List<PostResponse> getAllPostsForUser(String userUuid) {
+        return usersService.getAllPostsForUser(userUuid);
+    }
+
+    public UserResponse getUser(UserContext userContext) {
         return usersService.getUser(userContext)
-                           .map(AppUser::getUserResponse);
+                           .getUserResponse();
     }
 
 }

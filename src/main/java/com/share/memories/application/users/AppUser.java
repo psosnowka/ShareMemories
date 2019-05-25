@@ -37,7 +37,7 @@ class AppUser extends BaseEntity {
     }
 
     static AppUser from(AddUserRequest request, PasswordEncoder passwordEncoder) {
-        return new Appr(request.getEmail(),
+        return new AppUser(request.getEmail(),
                            passwordEncoder.encode(request.getPassword()),
                            request.getFirstName(),
                            request.getLastName(),

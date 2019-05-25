@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
@@ -20,9 +19,9 @@ public class SessionUtil {
     private final UserApplicationService userApplicationService;
     private final SecurityUtil securityUtil;
 
-    public Mono<TokenResponse> getSessionToken(LoginUserRequest loginUserRequest) {
-        return Mono.fromCallable(() -> userApplicationService.getUserByCredentials(loginUserRequest))
-                   .map(userContext -> securityUtil.createSessionToken(userContext.getEmail()));
+    public TokenResponse getSessionToken(LoginUserRequest loginUserRequest) {
+        AppUser user = userApplicationService.getUserByCredentials(loginUserRequest);
+        return securityUtil.createSessionToken(user.getEmail());
     }
 
     public UserContext getUserContext() {

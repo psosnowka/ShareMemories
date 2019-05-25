@@ -1,12 +1,10 @@
 package com.share.memories.infrastructure.controllers;
 
+import com.share.memories.application.posts.dto.PostResponse;
 import com.share.memories.application.users.SessionUtil;
 import com.share.memories.application.users.UserContext;
 import com.share.memories.application.users.UsersFacade;
-import com.share.memories.application.users.dto.AddFollowerRequest;
-import com.share.memories.application.users.dto.AddUserRequest;
-import com.share.memories.application.users.dto.LoginUserRequest;
-import com.share.memories.application.users.dto.UserResponse;
+import com.share.memories.application.users.dto.*;
 import com.share.memories.application.util.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -24,19 +23,19 @@ public class UsersController {
     private final SessionUtil sessionUtil;
 
     @PostMapping
-    public Mono<TokenResponse> addUser(@Valid @RequestBody AddUserRequest addUserRequest) {
+    public AddUserResponse addUser(@Valid @RequestBody AddUserRequest addUserRequest) {
         log.info("Add user request: {}", addUserRequest);
         return usersFacade.addUserAndCreateSessionToken(addUserRequest);
     }
 
     @PostMapping("/token")
-    public Mono<TokenResponse> getSessionToken(@Valid @RequestBody LoginUserRequest loginUserRequest) {
+    public TokenResponse getSessionToken(@Valid @RequestBody LoginUserRequest loginUserRequest) {
         log.info("Get session token for user: {}", loginUserRequest);
         return sessionUtil.getSessionToken(loginUserRequest);
     }
 
     @GetMapping("/account")
-    public Mono<UserResponse> getUser() {
+    public UserResponse getUser() {
         log.info("Get user profile request");
         UserContext userContext = sessionUtil.getUserContext();
         log.info("userContext:{}", userContext);
@@ -48,6 +47,13 @@ public class UsersController {
         UserContext userContext = sessionUtil.getUserContext();
         log.info("Add follower request:{}, for user:{}", request.getUserUuid(), userContext);
         return usersFacade.addFollower(userContext, request.getUserUuid());
+    }
+
+    @GetMapping("/{uuid}/posts")
+    public List<PostResponse> getAllPostsForUser(@PathVariable String uuid) {
+        log.info("Get all posts  for user:{}", uuid);
+        return usersFacade.getAllPostsForUser(uuid);
+
     }
 
     @GetMapping("/test")

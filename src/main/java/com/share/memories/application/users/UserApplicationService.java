@@ -48,6 +48,11 @@ class UserApplicationService {
         return appUserRepository.save(user);
     }
 
+    AppUser getUserByUuid(String uuid) {
+        return appUserRepository.findAppUserByUuid(uuid)
+                                .orElseThrow(() -> new AppException(ApiErrorCode.USER_NOT_EXISTS, "User not found", HttpStatus.BAD_REQUEST));
+    }
+
     private boolean isPasswordMatches(String requestPassword, String password) {
         return passwordEncoder.matches(requestPassword, password);
     }
