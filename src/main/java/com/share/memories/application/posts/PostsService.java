@@ -3,8 +3,6 @@ package com.share.memories.application.posts;
 import com.share.memories.application.posts.dto.AddPostRequest;
 import com.share.memories.application.posts.dto.UpdatePostRequest;
 import com.share.memories.application.users.UserContext;
-import com.share.memories.application.users.UsersFacade;
-import com.share.memories.application.users.dto.UserResponse;
 import com.share.memories.infrastructure.rest.ApiErrorCode;
 import com.share.memories.infrastructure.rest.AppException;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service

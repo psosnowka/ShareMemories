@@ -72,6 +72,81 @@
 					"response": []
 				},
 				{
+					"name": "GetAllPostsAvaiableForUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0M0B0ZXN0LnBsIiwiZXhwIjoxNTU5NjYzNjYxfQ.9HQvZ65q0cKOzHp1_GzzwnJUO1-lklIZX3eSdRgaXolURiDsCFfpMjM8EGypCLBZ6KWIBa3zjtCeQ3ldQ9UKrw"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/users/posts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPostCreatedByUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5NjU5NjEzfQ.mNofOpdI550iAXwxAAoOylL9cBptgB1fUJFZEyfzAfk14lafQk6guP-f5WOlDaj2C6_3XjkJ_v42Q3Je61TPCw"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/users/df1dec3d-a1ea-49e5-9bcb-ea304a5750d5/posts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"df1dec3d-a1ea-49e5-9bcb-ea304a5750d5",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getSessionToken",
 					"request": {
 						"method": "POST",

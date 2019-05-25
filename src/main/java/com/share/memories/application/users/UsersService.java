@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,13 +36,18 @@ class UsersService {
         return userApplicationService.getUserByEmail(userContext.getEmail());
     }
 
-    List<PostResponse> getAllPostsForUser(String userUuid) {
-        List<String> userUuids = userApplicationService.getUserByUuid(userUuid)
+    List<PostResponse> getAllPostsCreatedByUser(String uuid) {
+        AppUser userByUuid = userApplicationService.getUserByUuid(uuid);
+        return postsFacade.getAllPostsForUsers(Collections.singletonList(userByUuid.getUuid()));
+    }
+
+    List<PostResponse> getAllPostsForUser(UserContext userContext) {
+        List<String> userUuids = userApplicationService.getUserByUuid(userContext.getUuid())
                                                        .getFollowers()
                                                        .stream()
                                                        .map(BaseEntity::getUuid)
                                                        .collect(Collectors.toList());
-        userUuids.add(userUuid);
+        userUuids.add(userContext.getUuid());
         return postsFacade.getAllPostsForUsers(userUuids);
 
     }

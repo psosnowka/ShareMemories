@@ -24,13 +24,17 @@ public class UsersFacade {
                            .map(AppUser::getUserResponse);
     }
 
-    public List<PostResponse> getAllPostsForUser(String userUuid) {
-        return usersService.getAllPostsForUser(userUuid);
+    public List<PostResponse> getAllPostsForUser(UserContext userContext) {
+        return usersService.getAllPostsForUser(userContext);
     }
 
     public UserResponse getUser(UserContext userContext) {
         return usersService.getUser(userContext)
                            .getUserResponse();
+    }
+
+    public List<PostResponse> getAllPostsCreatedByUser(String uuid) {
+        return usersService.getAllPostsCreatedByUser(uuid);
     }
 
 }

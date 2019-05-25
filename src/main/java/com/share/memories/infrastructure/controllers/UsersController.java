@@ -49,10 +49,18 @@ public class UsersController {
         return usersFacade.addFollower(userContext, request.getUserUuid());
     }
 
+    @GetMapping("/posts")
+    public List<PostResponse> getAllPostsForUser() {
+        UserContext userContext = sessionUtil.getUserContext();
+        log.info("Get all posts for user:{}", userContext.getUuid());
+        return usersFacade.getAllPostsForUser(userContext);
+
+    }
+
     @GetMapping("/{uuid}/posts")
-    public List<PostResponse> getAllPostsForUser(@PathVariable String uuid) {
-        log.info("Get all posts  for user:{}", uuid);
-        return usersFacade.getAllPostsForUser(uuid);
+    public List<PostResponse> getAllPostsCreatedByUser(@PathVariable String uuid) {
+        log.info("Get all posts  created by user:{}", uuid);
+        return usersFacade.getAllPostsCreatedByUser(uuid);
 
     }
 
