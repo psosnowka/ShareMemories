@@ -10,7 +10,7 @@ public class AddUserResponse {
     private String lastName;
     private String email;
     private String userUuid;
-    private String imageUrl;
+    private String image;
     private String token;
 
     public static AddUserResponse of(UserContext userContext, TokenResponse tokenResponse) {

@@ -28,6 +28,7 @@ public class UsersController {
         return usersFacade.addUserAndCreateSessionToken(addUserRequest);
     }
 
+
     @PostMapping("/token")
     public TokenResponse getSessionToken(@Valid @RequestBody LoginUserRequest loginUserRequest) {
         log.info("Get session token for user: {}", loginUserRequest);
@@ -42,11 +43,24 @@ public class UsersController {
         return usersFacade.getUser(userContext);
     }
 
+    @GetMapping("/{uuid}")
+    public UserDetailsResponse getUserById(@PathVariable String uuid) {
+        UserContext userContext = sessionUtil.getUserContext();
+        return usersFacade.getUserById(userContext, uuid);
+    }
+
     @PostMapping("/account/followers")
     public Mono<UserResponse> addFollower(@Valid @RequestBody AddFollowerRequest request) {
         UserContext userContext = sessionUtil.getUserContext();
         log.info("Add follower request:{}, for user:{}", request.getUserUuid(), userContext);
         return usersFacade.addFollower(userContext, request.getUserUuid());
+    }
+
+    @DeleteMapping("/account/followers")
+    public UserResponse deleteFollower(@Valid @RequestBody DeleteFollowerRequest request) {
+        UserContext userContext = sessionUtil.getUserContext();
+        log.info("Delete follower request: {} in user context:{}", request, userContext.getEmail());
+        return usersFacade.deleteFollower(userContext, request);
     }
 
     @GetMapping("/posts")
@@ -62,10 +76,5 @@ public class UsersController {
         log.info("Get all posts  created by user:{}", uuid);
         return usersFacade.getAllPostsCreatedByUser(uuid);
 
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "test";
     }
 }

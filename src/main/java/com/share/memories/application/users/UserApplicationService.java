@@ -48,6 +48,18 @@ class UserApplicationService {
         return appUserRepository.save(user);
     }
 
+    AppUser deleterFollower(UserContext userContext, String userUuid) {
+        AppUser follow = appUserRepository.findAppUserByUuid(userUuid)
+                                          .orElseThrow(
+                                                  () -> new AppException(ApiErrorCode.USER_NOT_EXISTS, "User not exisits", HttpStatus.BAD_REQUEST));
+        AppUser loggedUser = appUserRepository.findAppUserByUuid(userContext.getUuid())
+                                        .map(appUser -> appUser.deleteFollower(follow))
+                                        .orElseThrow(() -> new IllegalStateException("Invalid system state"));
+
+        return appUserRepository.save(loggedUser);
+
+    }
+
     AppUser getUserByUuid(String uuid) {
         return appUserRepository.findAppUserByUuid(uuid)
                                 .orElseThrow(() -> new AppException(ApiErrorCode.USER_NOT_EXISTS, "User not found", HttpStatus.BAD_REQUEST));

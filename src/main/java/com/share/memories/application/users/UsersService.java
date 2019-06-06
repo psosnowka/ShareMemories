@@ -5,6 +5,8 @@ import com.share.memories.application.posts.PostsFacade;
 import com.share.memories.application.posts.dto.PostResponse;
 import com.share.memories.application.users.dto.AddUserRequest;
 import com.share.memories.application.users.dto.AddUserResponse;
+import com.share.memories.application.users.dto.DeleteFollowerRequest;
+import com.share.memories.application.users.dto.UserDetailsResponse;
 import com.share.memories.application.util.SecurityUtil;
 import com.share.memories.application.util.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +38,16 @@ class UsersService {
         return userApplicationService.getUserByEmail(userContext.getEmail());
     }
 
+    UserDetailsResponse getUserByUuid(UserContext userContext, String uuid) {
+        final AppUser loggedUser = userApplicationService.getUserByUuid(userContext.getUuid());
+        final UserContext userDetails = userApplicationService.getUserByUuid(uuid).getContext();
+        if (loggedUser.isFollower(uuid)) {
+            return UserDetailsResponse.withIsFollowingTrue(userDetails);
+        } else {
+            return UserDetailsResponse.withIsFollowingFalse(userDetails);
+        }
+    }
+
     List<PostResponse> getAllPostsCreatedByUser(String uuid) {
         AppUser userByUuid = userApplicationService.getUserByUuid(uuid);
         return postsFacade.getAllPostsForUsers(Collections.singletonList(userByUuid.getUuid()));
@@ -52,4 +64,7 @@ class UsersService {
 
     }
 
+    public AppUser deleteFollower(UserContext userContext, DeleteFollowerRequest request) {
+        return userApplicationService.deleterFollower(userContext, request.getUserUuid());
+    }
 }

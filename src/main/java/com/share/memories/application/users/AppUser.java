@@ -41,7 +41,7 @@ class AppUser extends BaseEntity {
                            passwordEncoder.encode(request.getPassword()),
                            request.getFirstName(),
                            request.getLastName(),
-                           request.getPhotoUrl(),
+                           request.getImage(),
                            new HashSet<>());
     }
 
@@ -50,16 +50,28 @@ class AppUser extends BaseEntity {
         return this;
     }
 
+    AppUser deleteFollower(AppUser appUser) {
+        this.followers.remove(appUser);
+        return this;
+    }
+
     UserResponse getUserResponse() {
         return new UserResponse(getUuid(),
                                 this.email,
                                 this.firstName,
                                 this.lastName,
+                                this.imageUrl,
                                 this.followers.stream()
                                               .map(appUser -> new UserResponse.User(appUser.getUuid(),
                                                                                     appUser.getEmail(),
                                                                                     appUser.getFirstName(),
-                                                                                    appUser.getLastName()))
+                                                                                    appUser.getLastName(),
+                                                                                    appUser.getImageUrl()))
                                               .collect(Collectors.toSet()));
+    }
+
+    boolean isFollower(String uuid) {
+        return followers.stream()
+                        .anyMatch(appUser -> appUser.getUuid().equals(uuid));
     }
 }
