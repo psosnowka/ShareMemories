@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"Test2@test.pl\",\n\t\"password\": \"Pass\",\n\t\"firstName\": \"First\",\n\t\"lastName\": \"Last\"\n}"
+							"raw": "{\n\t\"email\": \"asasdzxcd@easdst.pl\",\n\t\"password\": \"Pass\",\n\t\"firstName\": \"Fasdasdrst\",\n\t\"lastName\": \"Laszxct\",\n\t\"image\": \"url\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/users",
@@ -31,6 +31,35 @@
 							],
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"Tes123t2@teasdst.pl\",\n\t\"password\": \"Pass\",\n\t\"firstName\": \"First\",\n\t\"lastName\": \"Last\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/users/account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"account"
 							]
 						}
 					},
@@ -49,13 +78,48 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZXN0MkB0ZXN0LnBsIiwiZXhwIjoxNTU5MzMzNTAxfQ.uVqBpdaKahubqKcy4BiRUUAgVev568RjQIY1qqZNUiRIEndJTH5kiciW_xTyM4kz2G4TpfJO24w9bp5-UdXAyA",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhc2FzZGRAZWFzZHN0LnBsIiwiZXhwIjoxNTYwNzE5MzAxfQ.tTRUAk79AMYSuAR44Am5Yh6eIEE8z2HPfXm1pna8_AlaghpsBSGgd69EFjzN5ZlP7gjwALC7LFzuLJv49fb_dA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"userUuid\": \"4d06c9d9-6f91-4953-a297-6ff5017aa937\"\n}"
+							"raw": "{\n\t\"userUuid\": \"265a289b-d18e-4b15-a849-1b7c4ab83e34\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/users/account/followers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"account",
+								"followers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFollower",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhc2FzZGRAZWFzZHN0LnBsIiwiZXhwIjoxNTYwNzE5MzAxfQ.tTRUAk79AMYSuAR44Am5Yh6eIEE8z2HPfXm1pna8_AlaghpsBSGgd69EFjzN5ZlP7gjwALC7LFzuLJv49fb_dA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userUuid\": \"265a289b-d18e-4b15-a849-1b7c4ab83e34\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/users/account/followers",
@@ -141,6 +205,80 @@
 								"users",
 								"df1dec3d-a1ea-49e5-9bcb-ea304a5750d5",
 								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhc2FzZHp4Y2RAZWFzZHN0LnBsIiwiZXhwIjoxNTYwNzE5MzMwfQ.obgLrm1yzp6w6XyCPGybm3zJMS9VqLQddzklaAGsG98vyDBJJJ1EK0gBKxtgUF0ba3hXT_gJxtAWTQDpjz6Y-Q"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/users/265a289b-d18e-4b15-a849-1b7c4ab83e34",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"265a289b-d18e-4b15-a849-1b7c4ab83e34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLoggedUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhc2FzZHp4Y2RAZWFzZHN0LnBsIiwiZXhwIjoxNTYwNzE5MzMwfQ.obgLrm1yzp6w6XyCPGybm3zJMS9VqLQddzklaAGsG98vyDBJJJ1EK0gBKxtgUF0ba3hXT_gJxtAWTQDpjz6Y-Q"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/users/account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"account"
 							]
 						}
 					},
