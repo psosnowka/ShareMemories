@@ -19,16 +19,17 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 class Post extends BaseEntity {
+    @Column(length = 1500)
     private String title;
-    @Column(length = 1000)
+    @Column(length = 1500)
     private String text;
-    @Column(length = 500)
+    @Column(length = 1000)
     private String imageUrl;
     private boolean isPublic;
     private String ownerEmail;
     private String ownerFirstName;
     private String ownerLastName;
-    @Column(length = 500)
+    @Column(length = 1000)
     private String ownerImageUrl;
     private String ownerUuid;
 
