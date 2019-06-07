@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 class Post extends BaseEntity {
     private String title;
+    @Column(length = 1000)
     private String text;
     @Column(length = 500)
     private String imageUrl;
@@ -60,6 +61,7 @@ class Post extends BaseEntity {
         this.imageUrl = request.getImageUrl();
         this.text = request.getText();
         this.title = request.getTitle();
+        this.isPublic = request.isPublic();
         return this;
     }
 
