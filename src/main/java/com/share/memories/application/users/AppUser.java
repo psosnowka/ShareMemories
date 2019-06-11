@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,7 +29,7 @@ class AppUser extends BaseEntity {
     private String lastName;
     @Column(length = 500)
     private String imageUrl;
-    @OneToMany
+    @ManyToMany
     private Set<AppUser> followers = new HashSet<>();
 
     UserContext getContext() {
